@@ -1,5 +1,5 @@
 def puts(*args) end
-require "minitest/autorun"
+require 'rspec/autorun'
 require "./rps.rb"
 include RPS
 
@@ -8,43 +8,43 @@ describe "Rock-Paper-Scissors::Duel" do
 
   describe "Rock" do
     it "Ties against Rock" do
-      assert_equal :tie, Duel.play(move1: Rock.new, move2: Rock.new)
+      expect(Duel.play(move1: Rock.new, move2: Rock.new)).to eq(:tie)
     end
 
-    it " Wins against Scissors" do
-      assert Duel.play(move1: Rock.new, move2: Scissors.new)
+    it "Wins against Scissors" do
+      expect(Duel.play(move1: Rock.new, move2: Scissors.new)).to be_truthy
     end
 
     it "Loses against Paper" do
-      refute Duel.play(move1: Rock.new, move2: Paper.new)
+      expect(Duel.play(move1: Rock.new, move2: Paper.new)).to be_falsy
     end
   end
 
   describe "Paper" do
     it "Ties against Paper" do
-      assert_equal :tie, Duel.play(move1: Paper.new, move2: Paper.new)
+      expect(Duel.play(move1: Paper.new, move2: Paper.new)).to eq(:tie)
     end
 
     it "Wins against Rock" do
-      assert Duel.play(move1: Paper.new, move2: Rock.new)
+      expect(Duel.play(move1: Paper.new, move2: Rock.new)).to be_truthy
     end
 
     it "Loses against Scissors" do
-      refute Duel.play(move1: Paper.new, move2: Scissors.new)
+      expect(Duel.play(move1: Paper.new, move2: Scissors.new)).to be_falsy
     end
   end
 
   describe "Scissors" do
     it "Ties against Scissors" do
-      assert_equal :tie, Duel.play(move1: Scissors.new, move2: Scissors.new)
+      expect(Duel.play(move1: Scissors.new, move2: Scissors.new)).to eq(:tie)
     end
 
     it "Wins against Paper" do
-      assert Duel.play(move1: Scissors.new, move2: Paper.new)
+      expect(Duel.play(move1: Scissors.new, move2: Paper.new)).to be_truthy
     end
 
     it "Loses against Rock" do
-      refute Duel.play(move1: Scissors.new, move2: Rock.new)
+      expect(Duel.play(move1: Scissors.new, move2: Rock.new)).to be_falsy
     end
   end
 end
